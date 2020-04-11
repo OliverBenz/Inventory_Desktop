@@ -5,6 +5,7 @@ wxBEGIN_EVENT_TABLE(cMain, wxFrame)
 	EVT_BUTTON(BTN_SEARCH_ID, cMain::OnFilterUpdate)
 	EVT_BUTTON(BTN_NEW_ID, cMain::OnToolbarNew)
 	EVT_BUTTON(BTN_CLEAR_ID, cMain::OnToolbarClicked)
+	EVT_BUTTON(BTN_REFRESH_ID, cMain::OnToolbarRefresh)
 wxEND_EVENT_TABLE()
 
 cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Home", wxPoint(50,50), wxSize(800, 600)){
@@ -16,11 +17,14 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Home", wxPoint(50,50), wxSize(800, 
 	// Create Toolbar
 	toolBar = this->CreateToolBar(wxTB_HORIZONTAL, wxID_ANY);
 	
-	wxButton* bNew = new wxButton(toolBar, BTN_NEW_ID, "New", wxDefaultPosition, wxSize(35, 25), 0);
+	wxButton* bNew = new wxButton(toolBar, BTN_NEW_ID, "New", wxDefaultPosition, wxSize(50, 25), 0);
 	toolBar->AddControl(bNew);
 	
-	wxButton* bClear = new wxButton(toolBar, BTN_CLEAR_ID, "Clear", wxDefaultPosition, wxSize(35, 25), 0);
+	wxButton* bClear = new wxButton(toolBar, BTN_CLEAR_ID, "Clear", wxDefaultPosition, wxSize(50, 25), 0);
 	toolBar->AddControl(bClear);
+	
+	wxButton* bRefresh = new wxButton(toolBar, BTN_REFRESH_ID, "Refresh", wxDefaultPosition, wxSize(50, 25), 0);
+	toolBar->AddControl(bRefresh);
 
 	toolBar->Realize();
 
@@ -36,28 +40,36 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "Home", wxPoint(50,50), wxSize(800, 
 	//inventoryList = new wxListBox(this, 10002, wxPoint(10, 50), wxSize(300, 300));
 	//inventoryList->SetFont(font);
 
-	items = database->getLocations();
+	items = database->getItems();
 
 	// Create Grid
 	grid = new wxGrid(this, wxID_ANY, wxPoint(10, 50), wxSize(300, 300));
-	grid->CreateGrid(2, items.size());
+	grid->CreateGrid(items.size(), 3);
 	grid->SetColLabelValue(0, "ID");
 	grid->SetColLabelValue(1, "Name");
+	grid->SetColLabelValue(2, "Description");
 	grid->HideRowLabels();
-	
-	// Test fill grid
-	if (items.size() > 0) {
-		for (size_t i = 0; i < 2; i++) {
-			grid->SetReadOnly(i, 0);
 
-			grid->SetCellValue(i, 0, std::to_string(i));
-			grid->SetCellValue(i, 1, items[i]);
-		}
-	}
+	fillGrid();
 }
 
 cMain::~cMain() {
 }
+
+void cMain::fillGrid() {
+	// Test fill grid
+	if (items.size() > 0) {
+
+		for (size_t i = 0; i < 2; i++) {
+			grid->SetReadOnly(i, 0);
+
+			grid->SetCellValue(i, 0, std::to_string(i));
+			grid->SetCellValue(i, 1, items[i].getName());
+			grid->SetCellValue(i, 2, items[i].getDescription());
+		}
+	}
+}
+
 
 void cMain::OnFilterUpdate(wxCommandEvent& evt) {
 	switch (evt.GetId()) {
@@ -76,6 +88,13 @@ void cMain::OnToolbarClicked(wxCommandEvent& evt) {
 			searchField->Clear();
 			break;
 	}
+	evt.Skip();
+}
+
+void cMain::OnToolbarRefresh(wxCommandEvent& evt) {
+	items = database->getItems();
+	fillGrid();
+
 	evt.Skip();
 }
 

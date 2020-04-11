@@ -9,8 +9,8 @@
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
 
-#include "lib/Category.hpp"
-#include "lib/Item.hpp"
+#include "Category.hpp"
+#include "Item.hpp"
 
 class dbHelper{
 	sql::Driver* driver = nullptr;
@@ -23,5 +23,8 @@ public:
 
 	std::vector<std::string> getLocations();
 	std::vector<Category> getCategories();
+	std::vector<Item> getItems();
+
+	void pushItem(Item item);
 };
 

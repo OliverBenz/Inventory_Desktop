@@ -36,8 +36,11 @@
     <ClInclude Include="lib\Category.hpp">
       <Filter>Header Files\classes</Filter>
     </ClInclude>
-    <ClInclude Include="dbHelper.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="lib\dbHelper.hpp">
+      <Filter>Header Files\classes</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\Placement.hpp">
+      <Filter>Header Files\classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -56,8 +59,11 @@
     <ClCompile Include="lib\Category.cpp">
       <Filter>Source Files\classes</Filter>
     </ClCompile>
-    <ClCompile Include="dbHelper.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="lib\dbHelper.cpp">
+      <Filter>Source Files\classes</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\Placement.cpp">
+      <Filter>Source Files\classes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

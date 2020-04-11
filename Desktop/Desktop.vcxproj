@@ -155,17 +155,19 @@
     <ClInclude Include="AddWindow.hpp" />
     <ClInclude Include="cApp.hpp" />
     <ClInclude Include="cMain.hpp" />
-    <ClInclude Include="dbHelper.hpp" />
     <ClInclude Include="lib\Category.hpp" />
+    <ClInclude Include="lib\dbHelper.hpp" />
     <ClInclude Include="lib\Item.hpp" />
+    <ClInclude Include="lib\Placement.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AddWindow.cpp" />
     <ClCompile Include="cApp.cpp" />
     <ClCompile Include="cMain.cpp" />
-    <ClCompile Include="dbHelper.cpp" />
     <ClCompile Include="lib\Category.cpp" />
+    <ClCompile Include="lib\dbHelper.cpp" />
     <ClCompile Include="lib\Item.cpp" />
+    <ClCompile Include="lib\Placement.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

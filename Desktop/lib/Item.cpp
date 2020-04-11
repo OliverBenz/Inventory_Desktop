@@ -1,11 +1,11 @@
 #include "Item.hpp"
 
-Item::Item(int id, std::string name, std::string description, int placementId, int categoryId){
+Item::Item(int id, std::string name, std::string description, int placement, int category){
 	this->id = id;
 	this->name = name;
 	this->description = description;
-	this->placementId = placementId;
-	this->categoryId = categoryId;
+	this->placementId = placement;
+	this->categoryId = category;
 }
 
 int Item::getId() {
@@ -27,15 +27,15 @@ std::string Item::getDescription() {
 	return description;
 }
 
-void Item::setPlacementId(int id) {
-	if (id > 0) this->placementId = id;
+void Item::setPlacementId(int placement) {
+	this->placementId = placement;
 }
 int Item::getPlacementId() {
 	return placementId;
 }
 
-void Item::setCategoryId(int id) {
-	if (id > 0) this->categoryId = id;
+void Item::setCategoryId(int category) {
+	this->categoryId = category;
 }
 int Item::getCategoryId() {
 	return categoryId;

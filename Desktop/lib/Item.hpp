@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include "Category.hpp"
+#include "Placement.hpp"
 
 class Item{
 	int id;
@@ -10,7 +12,7 @@ class Item{
 	int categoryId;
 
 public:
-	Item(int id, std::string name, std::string description, int placementId, int categoryId);
+	Item(int id, std::string name, std::string description, int placement, int category);
 
 	int getId();
 
@@ -20,9 +22,9 @@ public:
 	void setDescription(std::string description);
 	std::string getDescription();
 
-	void setPlacementId(int id);
+	void setPlacementId(int placementId);
 	int getPlacementId();
 
-	void setCategoryId(int id);
+	void setCategoryId(int categoryId);
 	int getCategoryId();
 };
